@@ -6,12 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EnumExtensions.System.Text.Json" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SevenDayWeather\" />
   </ItemGroup>
 
 </Project>

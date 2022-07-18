@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Specialized;
-using System.Net;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WeatherAPI.Current;
+using WeatherAPI.CurrentWeather;
+using WeatherAPI.HistoryWeather;
+using WeatherAPI.LocationSearch;
 
 namespace WeatherAPI.TestConsole
 {
@@ -14,11 +17,17 @@ namespace WeatherAPI.TestConsole
         private static readonly IHost _hosting;
 
         public static IHost Hosting = _hosting ??= CreateHostBuilder(
-            Environment.GetCommandLineArgs()).Build();
+            Environment.GetCommandLineArgs())
+            .Build();
 
         private static IHostBuilder CreateHostBuilder(string[] args) => Host
             .CreateDefaultBuilder(args)
+            .ConfigureHostConfiguration(ConfigureHost)
             .ConfigureServices(ConfigureServices);
+
+        private static void ConfigureHost(IConfigurationBuilder builder) => builder
+            .AddJsonFile("appsettings.json")
+            .AddUserSecrets<Program>();
 
         public static IServiceProvider Services = Hosting.Services;
 
@@ -28,12 +37,9 @@ namespace WeatherAPI.TestConsole
             {
                 var builder = new UriBuilder(host.Configuration["WeatherApi"]);
                 NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
-                query["key"] = "4929b73f9c8943dba9265546221607";
-                builder.Query = query.ToString();
+                query["key"] = host.Configuration["WeatherApiKeys:Default"];
+                builder.Query = query.ToString() ?? string.Empty;
                 client.BaseAddress = new Uri(builder.ToString());
-
-                //client.BaseAddress = new Uri(host.Configuration["WeatherApi"]);
-                client.DefaultRequestVersion = HttpVersion.Version10;
             });
         }
 
@@ -44,9 +50,11 @@ namespace WeatherAPI.TestConsole
 
             var weather = host.Services.GetRequiredService<WeatherApiClient>();
 
-            Location[] location = await weather.GetLocationByName("tomsk");
-            CurrentWeather currentWeather = await weather.GetCurrentWeatherByCoordinates(
-                location[0].Latitude, location[0].Longitude);
+            FoundLocation[] location = await weather.GetLocationByName("tomsk");
+            CurrentWeatherResult currentWeather = await weather.GetCurrentWeather(
+                location[0].Coordinates, "ru");
+            SevenDayWeatherHistory weatherHistory = await weather.GetSevenDayWeatherHistory(
+                "London", "2022-07-15");
 
             Console.WriteLine("Done!");
             Console.ReadLine();
