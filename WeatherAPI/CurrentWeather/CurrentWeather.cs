@@ -8,7 +8,7 @@ namespace WeatherAPI.CurrentWeather
     public class CurrentWeather : MainWeatherCharacteristics
     {
         [JsonPropertyName("last_updated")]
-        [JsonConverter(typeof(JsonStringShortDateTimeConverter))]
+        [JsonConverter(typeof(JsonStringShortDateTime24HourConverter))]
         public DateTime LastUpdated { get; set; }
 
         [JsonPropertyName("last_updated_epoch")]

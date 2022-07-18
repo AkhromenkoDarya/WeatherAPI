@@ -14,7 +14,7 @@ namespace WeatherAPI.Common
         public long LocalTimeEpoch { get; set; }
 
         [JsonPropertyName("localtime")]
-        [JsonConverter(typeof(JsonStringShortDateTimeConverter))]
+        [JsonConverter(typeof(JsonStringShortDateTime12HourConverter))]
         public DateTime LocalTime { get; set; }
     }
 }

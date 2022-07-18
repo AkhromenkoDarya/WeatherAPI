@@ -11,7 +11,7 @@ namespace WeatherAPI.HistoryWeather
         public long TimeEpoch { get; set; }
 
         [JsonPropertyName("time")]
-        [JsonConverter(typeof(JsonStringShortDateTimeConverter))]
+        [JsonConverter(typeof(JsonStringShortDateTime24HourConverter))]
         public DateTime Time { get; set; }
 
         [JsonPropertyName("windchill_c")]
