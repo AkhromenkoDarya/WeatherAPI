@@ -11,11 +11,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>WeatherAPI.snk</AssemblyOriginatorKeyFile>
+    <PackageId>WeatherAPIClient</PackageId>
     <Authors>otulissa2012@yandex.ru</Authors>
-    <Company>otulissa2012@yandex.ru</Company>
     <Description>Клиент для WebAPI онлайн-сервиса погоды WeatherAPI</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>WeatherApiClient.snk</AssemblyOriginatorKeyFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/AkhromenkoDarya/WeatherAPI</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AkhromenkoDarya/WeatherAPI.git</RepositoryUrl>
