@@ -1,12 +1,14 @@
 ﻿using System.Text.Json.Serialization;
 using WeatherAPI.Common.Base;
+using WeatherAPI.JsonConverters;
 
 namespace WeatherAPI.LocationSearch
 {
     public class FoundLocation : LocationBase
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        [JsonConverter(typeof(JsonLongStringConverter))]
+        public string Id { get; set; }
 
         [JsonPropertyName("url")]
         public string Url { get; set; }
