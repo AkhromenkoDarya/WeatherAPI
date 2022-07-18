@@ -1,15 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WeatherAPI.Current
+namespace WeatherAPI.Common.Base
 {
-    public class Current
+    public abstract class MainWeatherCharacteristics
     {
-        [JsonPropertyName("last_updated")]
-        public string LastUpdated { get; set; }
-
-        [JsonPropertyName("last_updated_epoch")]
-        public long LastUpdatedEpoch { get; set; }
-
         [JsonPropertyName("temp_c")]
         public decimal TemperatureInCelsius { get; set; }
 
@@ -17,13 +11,13 @@ namespace WeatherAPI.Current
         public decimal TemperatureInFahrenheit { get; set; }
 
         [JsonPropertyName("feelslike_c")]
-        public decimal FeelsLikeCelsius { get; set; }
+        public decimal FeelsLikeInCelsius { get; set; }
 
         [JsonPropertyName("feelslike_f")]
-        public decimal FeelsLikeFahrenheit { get; set; }
+        public decimal FeelsLikeInFahrenheit { get; set; }
 
         [JsonPropertyName("condition")]
-        public Condition Condition { get; set; }
+        public WeatherCondition Condition { get; set; }
 
         [JsonPropertyName("wind_mph")]
         public decimal WindInMilesPerHour { get; set; }
@@ -56,7 +50,7 @@ namespace WeatherAPI.Current
         public decimal PressureInInches { get; set; }
 
         [JsonPropertyName("precip_mm")]
-        public decimal PrecipitationAmountInMillimeters { get; set; }
+        public decimal PrecipitationAmountInMillimeter { get; set; }
 
         [JsonPropertyName("precip_in")]
         public decimal PrecipitationAmountInInches { get; set; }
@@ -69,8 +63,5 @@ namespace WeatherAPI.Current
 
         [JsonPropertyName("is_day")]
         public int IsDay { get; set; }
-
-        [JsonPropertyName("uv")]
-        public decimal UltraVioletIndex { get; set; }
     }
 }
