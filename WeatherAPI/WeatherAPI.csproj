@@ -5,6 +5,24 @@
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Version>1.0.0.1</Version>
+    <PackageReleaseNotes>Запуск проекта</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>WeatherAPI.snk</AssemblyOriginatorKeyFile>
+    <Authors>otulissa2012@yandex.ru</Authors>
+    <Company>otulissa2012@yandex.ru</Company>
+    <Description>Клиент для WebAPI онлайн-сервиса погоды WeatherAPI</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/AkhromenkoDarya/WeatherAPI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AkhromenkoDarya/WeatherAPI.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Weather, WebAPI</PackageTags>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="EnumExtensions.System.Text.Json" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
