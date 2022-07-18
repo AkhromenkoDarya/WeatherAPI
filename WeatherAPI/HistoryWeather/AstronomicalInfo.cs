@@ -27,7 +27,7 @@ namespace WeatherAPI.HistoryWeather
         public MoonPhaseType MoonPhase { get; set; }
 
         [JsonPropertyName("moon_illumination")]
-        [JsonConverter(typeof(JsonMoonIlluminationConverter))]
+        [JsonConverter(typeof(JsonStringDecimalConverter))]
         public decimal MoonIllumination { get; set; }
     }
 }
